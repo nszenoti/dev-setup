@@ -1,0 +1,141 @@
+* Access :
+
+- Repo :
+  1. MainWebApp 2. MainDBSql 3. toolsndocs 4. ProdAPIATS 5. ezConnect 6. ZenAutoTools except Prod ATS
+
+- System Admin Access
+
+* Download Softwares As per :-
+  https://zenoti.atlassian.net/wiki/spaces/PECZ/pages/8462664/Configuring+Mainweb+application+code+base+on+dev+machine+for+the+first+time
+
+* Setup the BitBucket Account 
+  - Tortoise or SourceTree
+
+* Restroe DB issue
+  - https://raresql.com/tag/the-sp_configure-value-contained-database-authentication-must-be-set-to-1-in-order-to-s_msg-a-contained-database-you-may-need-to-use-reconfigure-to-set-the-value_in_use/#:~:text=The%20sp_configure%20value%20%E2%80%98contained%20database%20authentication%E2%80%99%20must%20be,new%20database%20feature%20shipped%20with%20SQL%20Server%202012.
+  - https://zenoti.atlassian.net/wiki/spaces/PECZ/pages/3511234/Zenoti+WebApp+CodeBase+Setup
+  - https://zenoti.atlassian.net/wiki/spaces/~353070134/blog/2021/11/09/3379625985/Zenoti+UI-Refresh
+
+  NOTE :- in db.config & FileManager.config
+          You dont need to update password (if you are having windows authentication)
+
+
+* Visual Studio :
+  ---
+  - build 
+     - [ ZpLite, MainWebApp, Api.sln ]
+
+    MMSWebLibrary.sln :- D:\Projects\mainwebapp\core_dll
+    ZpLite :- D:\Projects\mainwebapp\core_dll\ZPayLite
+    API.sln :- D:\Projects\mainwebapp\core_api
+
+
+  - Perform 4 npm commands to get better UI : (Zenoti + UI + Refresh)
+
+  -> Inorder to debug you need to attach the process to IIS-Server
+
+* IIS :
+  ---
+  Register 2 WebSites
+  1. Dev Zenoti  -> core_web
+  2. Dev Api   -> core_api/Api
+
+
+* SSMS :
+  ----
+  -> Run 5 scripts as mentioned in setup
+
+  SP :- filter :- getreplied
+   => dbo.Sp_notifications_getrepliedusers
+
+  ctrl + F := 'with'
+
+  below -- Registered Users
+    -> comment > `-- WITH(INDEX(tblMessageReceiptLog_ChannelMedium))`
+
+   
+* EzConnect (Minified Setup)
+  -----
+  1. Open ezConnect Page   ( dev.zenoti.com/ezconnect )  // once dev setup is ready
+  2. Right Click > View Page Source
+  
+  3. get below vals :
+     - globalOrganizationId
+     - globalCenterId
+     - globalUserId
+     - globalSignalRToken
+     - globalSignalRUrl
+     - globalWebApiToken
+     - globalWebApiUrl 
+
+  4. replace in index.html (\ezconnect\ezconnect\web\index.html)
+
+  => "globalWebApiToken" updates this every 6 hr for flutter project standalone
+
+  5. build the project 
+     flutter build web --release  // to get minified js code
+
+     copy binaries from this path
+     -> ezconnect\ezconnect\build\web
+     to
+     -> mainwebapp\core_web\ezConnect
+
+----
+
+NOTE :- use node 12.6.1 version (Preferred)
+* Run npm commands
+  -----
+  1. npm install -g gulp  (globally)
+      Error Fix :  npm audit fix --force
+
+  2. npm install -g gulp-sass (globally)
+  
+  3.  npm install (mainwebapp/core_web)
+      C:\Users\nipuns\AppData\Local\npm-cache\_logs\2022-05-26T16_29_29_968Z-debug-0.log
+
+  4. gulp (mainwebapp/core_web)
+
+
+----
+
+dev.zenoti.com
+
+----
+Rectify Steps  (Commenting the cache in web.config)
+
+-> mainwebapp :
+    - core_web/web.config  :- comment the <staticContent> & <rewrite>  blocks [line no 265-278]
+    
+    - cire_api/api/web.config :- comment the <rewrite> block [line no :- 114 - 118 ]
+ 
+
+-----
+Every time you take latest Do this 
+
+Prior :
+
+Run nant>t.txt   // In case maindbsql has many new changes
+   or
+Take compiled script from someone else !
+
+Run following file in order
+Typescomplete.sql
+Schemacomplete.sql
+DBResourceComplete.sql
+FunctionsComplete.sql
+SPComplete.sql
+
+-----
+
+0. ZpLite.sln
+1. Run Api.sln
+2. Run MMSWebLibrary.sln 
+3. Put Content as below
+   From -> core_dll\WebLibraryContainer\bin\Debug
+   To -> core_web\bin folder
+
+4. Run MainWebApp (build)
+   Run API.sln 
+   Run SignalR
+
+TEMP Files : C:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files

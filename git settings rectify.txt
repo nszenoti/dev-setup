@@ -1,0 +1,26 @@
+* ref
+
+https://medium.com/geekculture/a-step-by-step-guide-to-setting-up-git-config-global-properties
+
+https://richardballard.co.uk/ssh-keys-on-windows-10/
+
+https://www.vultr.com/docs/how-to-add-and-delete-ssh-keys
+
+https://stackoverflow.com/questions/56490194/vs-code-bitbucket-ssh-permission-denied-publickey
+
+https://pawelgrzybek.com/multiple-ssh-keys-for-multiple-bitbucket-github-accounts
+
+https://www.youtube.com/watch?v=67jukdJ1rgc
+
+
+------
+
+https://joeweller.me/windows-vs-code-git-and-ssh-authentication-with-passphrases/#:~:text=VSCode%20installed%20Created%20an%20SSH%20key%20using%20the,to%20provide%20the%20passphrase%20to%20your%20SSH%20Key.
+
+https://code.visualstudio.com/docs/remote/troubleshooting#_setting-up-the-ssh-agent
+
+https://code.visualstudio.com/docs/remote/ssh-tutorial
+
+https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+
+https://stackoverflow.com/questions/40852825/sourcetree-terminal-automatically-load-ssh-key#:~:text=Open%20Sourcetree.%20In%20the%20menu%2C%20go%20to%20%22Tools%22%2C,checkbox%20%22Automatically%20start%20SSH%20agent%20when%20SourceTree%20opens%22

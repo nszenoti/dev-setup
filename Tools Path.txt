@@ -1,0 +1,6 @@
+plink/ Putty
+ C:\Users\nipuns\AppData\Local\SourceTree\app-3.4.8\tools\putty
+
+
+jdk installed bu Intellij 
+C:\Users\nipuns\.jdks\openjdk-18.0.2\bin
